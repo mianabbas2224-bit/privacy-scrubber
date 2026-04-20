@@ -30,26 +30,36 @@
     </style>
 </head>
 <body class="text-slate-200 font-sans selection:bg-blue-500/30">
-    <div class="glass-panel rounded-3xl p-6 bg-blue-600/10 border-blue-500/30 mt-6">
-    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Viral Growth</h4>
-    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed">Privacy is better when shared. Invite a colleague to scrub their data.</p>
-    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied! Share it with a friend.');" class="w-full py-3 bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 text-[10px] font-black rounded-xl border border-blue-500/30 transition-all uppercase tracking-tighter">
-        Copy Invite Link
-    </button>
-</div>
     <div class="mesh-gradient"></div>
 
     <div class="max-w-5xl mx-auto px-6 py-12">
-        <nav class="flex justify-between items-center mb-16">
+        
+        <nav class="flex flex-col md:flex-row justify-between items-center mb-16 gap-6">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
-                <h1 class="text-2xl font-black tracking-tighter text-white uppercase">PureScrub <span class="text-blue-500 text-sm align-top ml-1">V2.0</span></h1>
+                <div>
+                    <h1 class="text-2xl font-black tracking-tighter text-white uppercase leading-none">PureScrub</h1>
+                    <span class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">Identity Shield v2.0</span>
+                </div>
             </div>
-            <div class="flex items-center gap-2 text-[10px] font-mono text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>
-                ENCRYPTION_ACTIVE
+            
+            <div class="flex items-center gap-6 px-6 py-2 bg-slate-900/50 rounded-full border border-white/5 backdrop-blur-md">
+                <div class="flex flex-col items-start">
+                    <span class="text-[8px] text-slate-500 uppercase font-bold">Network Load</span>
+                    <span class="text-xs font-mono text-green-400">0.02ms</span>
+                </div>
+                <div class="w-px h-6 bg-white/10"></div>
+                <div class="flex flex-col items-start">
+                    <span class="text-[8px] text-slate-500 uppercase font-bold">Privacy Level</span>
+                    <span class="text-xs font-mono text-blue-400 font-bold uppercase">Maximum</span>
+                </div>
+                <div class="w-px h-6 bg-white/10"></div>
+                <div class="flex flex-col items-start">
+                    <span class="text-[8px] text-slate-500 uppercase font-bold">Secure Node</span>
+                    <span class="text-xs font-mono text-white">#4829-HK</span>
+                </div>
             </div>
         </nav>
 
@@ -59,19 +69,19 @@
                     <div id="scanLine" class="scan-line"></div>
                     <div id="idleState" class="space-y-6">
                         <div class="flex justify-center gap-6 pt-4 opacity-50 hover:opacity-100 transition-opacity">
-    <div class="flex flex-col items-center gap-1">
-        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
-        <span class="text-[8px] font-bold uppercase tracking-tighter">No Logs</span>
-    </div>
-    <div class="flex flex-col items-center gap-1">
-        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9L10 1.554 17.834 4.9c.414.178.666.601.666 1.033v3.396c0 4.545-2.61 8.628-6.64 10.428l-.33.146-.33-.146C7.17 17.96 4.56 13.877 4.56 9.33V5.933c0-.432.252-.855.666-1.033zM10 3.103l-6.57 2.817v3.41c0 3.738 2.05 7.155 5.51 8.808l.33.158.33-.158c3.46-1.653 5.51-5.07 5.51-8.809V5.92L10 3.103z" clip-rule="evenodd"></path></svg>
-        <span class="text-[8px] font-bold uppercase tracking-tighter">Secure</span>
-    </div>
-    <div class="flex flex-col items-center gap-1">
-        <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1014 0c0-3.042-1.135-5.824-3-7.938a4.973 4.973 0 00-1.605-1.509z" clip-rule="evenodd"></path></svg>
-        <span class="text-[8px] font-bold uppercase tracking-tighter">Fast</span>
-    </div>
-</div>
+                            <div class="flex flex-col items-center gap-1">
+                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                <span class="text-[8px] font-bold uppercase tracking-tighter">No Logs</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.9L10 1.554 17.834 4.9c.414.178.666.601.666 1.033v3.396c0 4.545-2.61 8.628-6.64 10.428l-.33.146-.33-.146C7.17 17.96 4.56 13.877 4.56 9.33V5.933c0-.432.252-.855.666-1.033zM10 3.103l-6.57 2.817v3.41c0 3.738 2.05 7.155 5.51 8.808l.33.158.33-.158c3.46-1.653 5.51-5.07 5.51-8.809V5.92L10 3.103z" clip-rule="evenodd"></path></svg>
+                                <span class="text-[8px] font-bold uppercase tracking-tighter">Secure</span>
+                            </div>
+                            <div class="flex flex-col items-center gap-1">
+                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1014 0c0-3.042-1.135-5.824-3-7.938a4.973 4.973 0 00-1.605-1.509z" clip-rule="evenodd"></path></svg>
+                                <span class="text-[8px] font-bold uppercase tracking-tighter">Fast</span>
+                            </div>
+                        </div>
                         <div class="w-24 h-24 bg-blue-500/5 rounded-full flex items-center justify-center mx-auto border border-blue-500/10 group-hover:border-blue-500/50 transition-all duration-700">
                             <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                         </div>
@@ -95,8 +105,17 @@
                         <div class="flex justify-between text-sm font-mono"><span class="text-slate-400">NETWORK</span><span class="text-white">OFFLINE</span></div>
                     </div>
                 </div>
+
+                <div class="glass-panel rounded-3xl p-6 bg-blue-600/10 border-blue-500/30">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Viral Growth</h4>
+                    <p class="text-[11px] text-slate-400 mb-4 leading-relaxed text-left">Privacy is better when shared. Invite a colleague to scrub their data.</p>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!');" class="w-full py-3 bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 text-[10px] font-black rounded-xl border border-blue-500/30 transition-all uppercase tracking-tighter">
+                        Copy Invite Link
+                    </button>
+                </div>
+
                 <div class="glass-panel rounded-[2rem] p-8 bg-blue-600/5 border-blue-500/20">
-                    <p class="text-sm text-slate-400 leading-relaxed italic">"Metadata contains your home GPS and phone serial number. PureScrub uses browser-only reconstruction to protect your identity."</p>
+                    <p class="text-sm text-slate-400 leading-relaxed italic text-left">"Metadata contains your home GPS and phone serial number. PureScrub uses browser-only reconstruction to protect your identity."</p>
                 </div>
             </div>
         </div>
@@ -104,86 +123,72 @@
         <section class="w-full max-w-5xl mt-16 border-t border-slate-800 pt-16 mb-20">
             <h2 class="text-3xl font-black text-white mb-12 text-center uppercase tracking-tighter">Laboratory Intelligence (FAQ)</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
+                <div class="glass-panel p-8 rounded-[2rem] border-white/5 text-left">
                     <h4 class="text-blue-400 font-bold mb-3 text-lg">How do I remove GPS location from photos?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Simply drag your image into PureScrub. Our engine strips EXIF tags, including GPS coordinates, ensuring your home or office location remains private before you share on social media.</p>
+                    <p class="text-sm text-slate-400 leading-relaxed">Simply drag your image into PureScrub. Our engine strips EXIF tags, including GPS coordinates, ensuring your location remains private.</p>
                 </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
+                <div class="glass-panel p-8 rounded-[2rem] border-white/5 text-left">
                     <h4 class="text-blue-400 font-bold mb-3 text-lg">Is PureScrub free for commercial use?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Yes. We believe privacy is a right. PureScrub is a 100% free web utility for journalists, photographers, and everyday users to clean photo metadata instantly.</p>
+                    <p class="text-sm text-slate-400 leading-relaxed">Yes. PureScrub is a 100% free web utility for journalists, photographers, and everyday users to clean photo metadata instantly.</p>
                 </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
+                <div class="glass-panel p-8 rounded-[2rem] border-white/5 text-left">
                     <h4 class="text-blue-400 font-bold mb-3 text-lg">Does this work on iPhone and Android?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Yes. PureScrub is a progressive web utility that works in any mobile browser. You can scrub metadata directly from your phone's camera roll without installing an app.</p>
+                    <p class="text-sm text-slate-400 leading-relaxed">Yes. PureScrub works in any mobile browser. You can scrub metadata directly from your phone's camera roll without installing an app.</p>
                 </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
+                <div class="glass-panel p-8 rounded-[2rem] border-white/5 text-left">
                     <h4 class="text-blue-400 font-bold mb-3 text-lg">What is EXIF data?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">EXIF data is a hidden file inside your image that stores camera settings, timestamps, and sensitive location markers. Our tool purges this data completely.</p>
+                    <p class="text-sm text-slate-400 leading-relaxed">EXIF data is a hidden file inside your image that stores camera settings, timestamps, and sensitive location markers.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="text-center text-slate-600 text-[10px] tracking-widest uppercase font-bold pb-10">
-            &copy; 2026 PureScrub Privacy Systems // No Data Retention Policy
-        </footer>
-        <footer class="w-full max-w-5xl mx-auto border-t border-slate-800 pt-16 pb-12 mt-20">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
-        
-        <div class="col-span-2 md:col-span-1">
-            <div class="flex items-center gap-2 mb-4">
-                <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-[10px] font-bold">PS</div>
-                <span class="text-white font-bold tracking-tighter uppercase text-sm">PureScrub</span>
-            </div>
-            <p class="text-slate-500 text-xs leading-relaxed mb-4">
-                The global standard for browser-side image purification. Reclaiming privacy, one pixel at a time.
-            </p>
-            <div class="inline-flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
-                <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                <span class="text-[9px] font-mono text-slate-400">NODE_01: ONLINE</span>
+        <div class="w-full max-w-5xl mx-auto mb-20">
+            <div class="glass-panel rounded-[2.5rem] p-12 relative overflow-hidden border-blue-500/20 border">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="max-w-md text-center md:text-left">
+                        <h3 class="text-3xl font-black text-white mb-4 tracking-tighter text-left uppercase">Secure Your Network.</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed text-left">Most photos shared online contain enough data to find your front door. Help your community stay anonymous by sharing the PureScrub protocol.</p>
+                    </div>
+                    <div class="flex flex-col gap-4 w-full md:w-auto min-w-[280px]">
+                        <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" 
+                            class="group relative px-8 py-5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl transition-all shadow-xl shadow-blue-600/20 active:scale-95 uppercase text-xs tracking-widest">
+                            Copy Invite Link
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div>
-            <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Utilities</h5>
-            <ul class="space-y-3 text-slate-500 text-xs font-medium">
-                <li><a href="#" class="hover:text-blue-400 transition-colors">EXIF Remover</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">GPS Stripper</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">Metadata Cleaner</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">Privacy Laboratory</a></li>
-            </ul>
-        </div>
+        <footer class="w-full max-w-5xl mx-auto border-t border-slate-800 pt-16 pb-12">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2 md:col-span-1 text-left">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-[10px] font-bold text-white">PS</div>
+                        <span class="text-white font-bold tracking-tighter uppercase text-sm">PureScrub</span>
+                    </div>
+                    <p class="text-slate-500 text-xs leading-relaxed mb-4">
+                        The global standard for browser-side image purification. Reclaiming privacy, one pixel at a time.
+                    </p>
+                    <div class="inline-flex items-center gap-2 bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-800">
+                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                        <span class="text-[9px] font-mono text-slate-400">NODE_01: ONLINE</span>
+                    </div>
+                </div>
 
-        <div>
-            <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Governance</h5>
-            <ul class="space-y-3 text-slate-500 text-xs font-medium">
-                <li><a href="#" class="hover:text-blue-400 transition-colors">Zero-Log Policy</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">GDPR Compliance</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">Open Source</a></li>
-                <li><a href="#" class="hover:text-blue-400 transition-colors">Security Audit</a></li>
-            </ul>
-        </div>
+                <div class="text-left">
+                    <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Utilities</h5>
+                    <ul class="space-y-3 text-slate-500 text-xs font-medium">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">EXIF Remover</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">GPS Stripper</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Metadata Cleaner</a></li>
+                    </ul>
+                </div>
 
-        <div>
-            <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Network</h5>
-            <div class="flex gap-4">
-                <a href="#" class="text-slate-500 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                </a>
-                <a href="#" class="text-slate-500 hover:text-white transition-colors">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-slate-900 pt-8">
-        <p class="text-[10px] font-mono text-slate-600 tracking-widest uppercase">
-            &copy; 2026 PureScrub Engineering // All Rights Reserved
-        </p>
-        <div class="flex gap-6">
-            <span class="text-[9px] font-bold text-slate-700 uppercase tracking-tighter">Encrypted Connection</span>
-            <span class="text-[9px] font-bold text-slate-700 uppercase tracking-tighter">v2.0.4-Stable</span>
-        </div>
-    </div>
-</footer>
+                <div class="text-left">
+                    <h5 class="text-white text-xs font-bold uppercase tracking-widest mb-6">Governance</h5>
+                    <ul class="space-y-3 text-slate-500 text-xs font-medium">
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">Zero-Log Policy</a></li>
+                        <li><a href="#" class="hover:text-blue-400 transition-colors">GDPR Compliance</a></li>
+                        <li><a href="#" class
     
