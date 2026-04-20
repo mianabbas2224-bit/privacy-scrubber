@@ -26,6 +26,7 @@
     <div class="mesh-gradient"></div>
 
     <div class="max-w-6xl mx-auto px-6 py-10">
+        
         <nav class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
@@ -33,36 +34,41 @@
                 </div>
                 <div>
                     <h1 class="text-2xl font-black tracking-tighter text-white uppercase leading-none">PrivacyScrub</h1>
-                    <span class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">Browser-Side Encryption</span>
+                    <span class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">Secure Metadata Eraser</span>
                 </div>
             </div>
-            <div class="flex items-center gap-4 px-5 py-2 bg-slate-900/80 rounded-full border border-white/5 backdrop-blur-md">
-                <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                    <span class="text-[10px] font-mono text-slate-400 uppercase tracking-widest">Local_Engine: Active</span>
-                </div>
+            
+            <div class="flex items-center gap-6 px-6 py-2 bg-slate-900/50 rounded-full border border-white/5 backdrop-blur-md">
+                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Node</span><span class="text-xs font-mono text-green-400">ENCRYPTED</span></div>
+                <div class="w-px h-6 bg-white/10"></div>
+                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Privacy</span><span class="text-xs font-mono text-blue-400 font-bold uppercase">MAXIMUM</span></div>
+                <div class="w-px h-6 bg-white/10"></div>
+                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Load</span><span class="text-xs font-mono text-white">0% (Local)</span></div>
             </div>
         </nav>
 
-        <div class="text-center mb-16">
-            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic mb-4">Wipe Your Digital DNA.</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">PrivacyScrub.com destroys the hidden data inside your photos that hackers and trackers use to find your home.</p>
+        <div class="text-center mb-16 space-y-4">
+            <div class="inline-block px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4">
+                <span class="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">1,248 Images Scrubbed Today</span>
+            </div>
+            <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Privacy is not a Luxury.</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">Built for <b>PrivacyScrub.com</b> users who demand total anonymity. Wipe hidden digital fingerprints instantly.</p>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start mb-24">
             <div class="lg:col-span-8">
-                <div id="dropZone" class="glass-panel neon-border rounded-[2.5rem] p-12 text-center relative overflow-hidden min-h-[550px] flex flex-col items-center justify-center cursor-pointer" onclick="document.getElementById('fileInput').click()">
+                <div id="dropZone" class="glass-panel neon-border rounded-[2.5rem] p-12 text-center relative overflow-hidden group transition-all duration-500 min-h-[550px] flex flex-col items-center justify-center cursor-pointer" onclick="document.getElementById('fileInput').click()">
                     <div id="scanLine" class="scan-line"></div>
                     <div id="idleState" class="space-y-8">
-                        <div class="w-32 h-32 bg-blue-500/5 rounded-full flex items-center justify-center mx-auto border border-blue-500/10 transition-all duration-700">
-                            <svg class="w-14 h-14 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+                        <div class="w-28 h-28 bg-blue-500/5 rounded-full flex items-center justify-center mx-auto border border-blue-500/10 group-hover:border-blue-500/50 transition-all duration-700">
+                            <svg class="w-12 h-12 text-blue-500 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
                         </div>
-                        <div class="space-y-2">
-                            <h2 class="text-4xl font-black text-white uppercase tracking-tighter">Initialize Protocol</h2>
-                            <p class="text-slate-500 text-lg">Select or drop image to begin deep purification.</p>
+                        <div>
+                            <h2 class="text-4xl font-black text-white mb-2 tracking-tighter uppercase">Initialize Scrub</h2>
+                            <p class="text-slate-400 max-w-sm mx-auto text-lg leading-relaxed">Drop image to purge EXIF, GPS, and Device ID markers.</p>
                         </div>
                     </div>
-
+                    
                     <div id="processingState" class="hidden w-full max-w-md space-y-10">
                         <div class="space-y-4">
                             <div class="flex justify-between text-[10px] font-black uppercase tracking-[0.2em]">
@@ -73,16 +79,16 @@
                                 <div id="safetyGauge" class="gauge-bar h-full w-[15%] bg-gradient-to-r from-red-500 to-blue-500"></div>
                             </div>
                         </div>
-                        <div id="statusText" class="text-xl font-mono text-blue-400 uppercase tracking-widest animate-pulse">Scanning Headers...</div>
+                        <div id="statusText" class="text-xl font-mono text-blue-400 uppercase tracking-widest animate-pulse">Wiping Data...</div>
                     </div>
                     <input type="file" id="fileInput" hidden accept="image/*">
                 </div>
             </div>
 
-            <div class="lg:col-span-4 space-y-6">
+            <div class="lg:col-span-4 flex flex-col gap-6">
                 <div class="glass-panel rounded-[2rem] p-8">
                     <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 flex justify-between">
-                        Metadata Terminal <span class="text-blue-500">Live</span>
+                        Security Console <span class="text-blue-500">Live</span>
                     </h4>
                     <div id="dataTerminal" class="space-y-4">
                         <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5">
@@ -98,119 +104,33 @@
                             <span class="text-slate-400">—</span>
                         </div>
                         <div class="flex justify-between items-center text-xs font-mono py-2">
-                            <span class="text-slate-500">SOFTWARE</span>
+                            <span class="text-slate-500">SERIAL_MASK</span>
                             <span class="text-slate-400">—</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-3xl p-8 bg-blue-600/5 border-blue-500/20">
-                    <h4 class="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-4 italic">Pro Tip</h4>
-                    <p class="text-xs text-slate-400 leading-relaxed uppercase tracking-tighter">
-                        Social media platforms use "Invisible Pixels" to track your location. Our scrubber randomizes the pixel-level noise to break their tracking algorithms.
-                    </p>
+                <div class="glass-panel rounded-3xl p-8 bg-blue-600/10 border-blue-500/30">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Invite Colleague</h4>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Help your network stay anonymous. Share the PrivacyScrub link.</p>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Secure Link Copied!')" class="w-full py-4 bg-blue-600 text-white text-[10px] font-black rounded-xl hover:bg-blue-500 transition-all uppercase tracking-widest shadow-lg active:scale-95">
+                        Copy Invite Link
+                    </button>
                 </div>
-
-                <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" class="w-full py-5 bg-slate-900 border border-slate-800 text-white text-[10px] font-black rounded-2xl hover:bg-slate-800 transition-all uppercase tracking-widest active:scale-95">
-                    Copy Private Invite Link
-                </button>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-32">
-            <div class="space-y-4 text-left">
-                <h4 class="text-xl font-black text-white uppercase italic">Why PrivacyScrub?</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">Unlike "Online Converters" that steal your data, PrivacyScrub works entirely inside your browser's sandbox. We have <b>Zero Servers</b>. Your private photos never leave your computer.</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 border-y border-slate-800 py-20">
+            <div class="text-center space-y-4">
+                <div class="text-blue-500 text-5xl font-black opacity-20">01</div>
+                <h4 class="text-white font-bold text-xl uppercase tracking-tighter">Local Ingest</h4>
+                <p class="text-slate-500 text-sm">Image is loaded directly into your browser's RAM. No data ever hits our server.</p>
             </div>
-            <div class="space-y-4 text-left">
-                <h4 class="text-xl font-black text-white uppercase italic">Absolute Wipe</h4>
-                <p class="text-slate-500 text-sm leading-relaxed">We remove EXIF, IPTC, XMP, and Photoshop headers. We even strip the thumbnail previews that often remain even after basic "clearing" tools are used.</p>
+            <div class="text-center space-y-4">
+                <div class="text-blue-500 text-5xl font-black opacity-20">02</div>
+                <h4 class="text-white font-bold text-xl uppercase tracking-tighter">EXIF Purge</h4>
+                <p class="text-slate-500 text-sm">Our engine surgically removes 140+ metadata tags including GPS & Serial numbers.</p>
             </div>
-        </div>
-
-        <footer class="border-t border-slate-900 pt-12 pb-10 text-center md:text-left">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div>
-                    <span class="text-white font-black uppercase text-sm tracking-tighter">PrivacyScrub.com</span>
-                    <p class="text-[10px] font-mono text-slate-600 uppercase tracking-widest mt-2">© 2026 Pure Privacy Engineering // No Trace Policy</p>
-                </div>
-                <div class="flex gap-10">
-                    <span class="text-[9px] font-bold text-slate-700 uppercase tracking-widest">AES-256 Readiness</span>
-                    <span class="text-[9px] font-bold text-slate-700 uppercase tracking-widest">Local_v2.5</span>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
-        const fileInput = document.getElementById('fileInput');
-        const idleState = document.getElementById('idleState');
-        const processingState = document.getElementById('processingState');
-        const statusText = document.getElementById('statusText');
-        const safetyGauge = document.getElementById('safetyGauge');
-        const gaugeText = document.getElementById('gaugeText');
-        const terminal = document.getElementById('dataTerminal');
-
-        fileInput.addEventListener('change', async (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            // Start UI Flow
-            idleState.classList.add('hidden');
-            processingState.classList.remove('hidden');
-            document.getElementById('scanLine').style.display = 'block';
-
-            // Step 1: Simulated Extraction
-            statusText.innerText = "EXTRACTING_DATA...";
-            terminal.innerHTML = `
-                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>GPS_COORDS</span><span>FOUND</span></div>
-                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>DEVICE_ID</span><span>FOUND</span></div>
-                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>TIMESTAMP</span><span>FOUND</span></div>
-                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>SOFTWARE</span><span>FOUND</span></div>
-            `;
-            await new Promise(r => setTimeout(r, 1200));
-
-            // Step 2: Scrubbing
-            statusText.innerText = "PURGING_IDENTIFIERS...";
-            safetyGauge.style.width = "60%";
-            gaugeText.innerText = "Securing...";
-            gaugeText.className = "text-blue-400";
-            await new Promise(r => setTimeout(r, 1000));
-
-            // Step 3: Reconstruction
-            statusText.innerText = "RECONSTRUCTING_PIXELS...";
-            safetyGauge.style.width = "100%";
-            await new Promise(r => setTimeout(r, 800));
-
-            // Step 4: Finalize
-            const img = new Image();
-            img.src = URL.createObjectURL(file);
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.width; canvas.height = img.height;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                canvas.toBlob((blob) => {
-                    const url = URL.createObjectURL(blob);
-                    gaugeText.innerText = "FULLY_SHIELDED";
-                    gaugeText.className = "text-green-400";
-                    terminal.innerHTML = `
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>GPS_COORDS</span><span>PURGED</span></div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>DEVICE_ID</span><span>PURGED</span></div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>TIMESTAMP</span><span>PURGED</span></div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>SOFTWARE</span><span>PURGED</span></div>
-                    `;
-                    document.getElementById('scanLine').style.display = 'none';
-                    processingState.innerHTML = `
-                        <div class="text-7xl mb-6">🛡️</div>
-                        <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-tighter italic">Purification Complete</h2>
-                        <p class="text-slate-400 mb-8 uppercase text-xs font-bold tracking-widest">Metadata has been permanently erased.</p>
-                        <button onclick="window.location.href='${url}'" class="bg-blue-600 hover:bg-blue-500 text-white font-black py-6 px-16 rounded-2xl shadow-2xl shadow-blue-600/40 transition-all active:scale-95 text-xs tracking-widest uppercase">Download Safe Image</button>
-                    `;
-                }, 'image/jpeg', 0.95);
-            };
-        });
-    </script>
-</body>
-</html>
+            <div class="text-center space-y-4">
+                <div class="text-blue-500 text-5xl font-
     
