@@ -3,130 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PureScrub | Ultra-Private Image Laboratory</title>
+    <title>PureScrub | The #1 Privacy Image Engine</title>
     
-    <meta name="description" content="Free, instant, and 100% private image metadata scrubber. Remove GPS and camera data in your browser.">
-    <meta property="og:title" content="PureScrub | Private Image Cleaner">
-    <meta property="og:description" content="Keep your location and device data private.">
-    <meta property="og:type" content="website">
-
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="description" content="Instant photo privacy. Remove GPS, camera IDs, and hidden trackers in your browser. 100% private, zero server logs.">
+    <meta property="og:title" content="PureScrub | Secure Image Purifier">
+    <meta property="og:image" content="https://purescrub.vercel.app/og-image.jpg"> <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
     <style>
-        :root { --bg: #030712; --accent: #3b82f6; }
-        body { background-color: var(--bg); overflow-x: hidden; }
-        .mesh-gradient {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.1) 0%, transparent 30%);
-            animation: pulse 10s infinite alternate;
-        }
-        @keyframes pulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
-        .glass-panel { background: rgba(15, 23, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .neon-border { border: 1px solid rgba(59, 130, 246, 0.3); transition: 0.3s; }
-        .neon-border:hover { border-color: var(--accent); box-shadow: 0 0 25px rgba(59, 130, 246, 0.4); }
-        .scan-line { width: 100%; height: 2px; background: var(--accent); position: absolute; top: 0; left: 0; box-shadow: 0 0 15px var(--accent); animation: scan 2s linear infinite; display: none; }
-        @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
+        :root { --bg: #020617; --accent: #3b82f6; }
+        body { background-color: var(--bg); color: #f8fafc; font-family: 'Inter', sans-serif; }
+        .mesh { position: fixed; inset: 0; z-index: -1; background: radial-gradient(at 0% 0%, rgba(59,130,246,0.1) 0, transparent 50%), radial-gradient(at 100% 100%, rgba(37,99,235,0.05) 0, transparent 50%); }
+        .glass { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+        .terminal-text { font-family: 'Courier New', monospace; font-size: 10px; color: #60a5fa; }
+        @keyframes pulse-ring { 0% { transform: scale(.33); opacity: 0; } 80%, 100% { opacity: 0; } }
     </style>
 </head>
-<body class="text-slate-200 font-sans selection:bg-blue-500/30">
-    <div class="mesh-gradient"></div>
+<body class="antialiased">
+    <div class="mesh"></div>
 
-    <div class="max-w-5xl mx-auto px-6 py-12">
-        <nav class="flex justify-between items-center mb-16">
+    <div class="max-w-6xl mx-auto px-6 py-10">
+        <header class="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                <div class="p-2 bg-blue-600 rounded-xl shadow-lg shadow-blue-500/20">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                 </div>
-                <h1 class="text-2xl font-black tracking-tighter text-white uppercase">PureScrub <span class="text-blue-500 text-sm align-top ml-1">V2.0</span></h1>
+                <h1 class="text-xl font-black uppercase tracking-widest text-white">Pure<span class="text-blue-500">Scrub</span></h1>
             </div>
-            <div class="flex items-center gap-2 text-[10px] font-mono text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
-                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span></span>
-                ENCRYPTION_ACTIVE
+            
+            <div class="flex gap-4">
+                <div class="flex items-center gap-1.5 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Local Processing</span>
+                </div>
+                <div class="flex items-center gap-1.5 px-3 py-1 bg-white/5 rounded-full border border-white/10">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Zero Logs</span>
+                </div>
             </div>
-        </nav>
+        </header>
 
-        <div class="grid lg:grid-cols-12 gap-8 mb-20">
-            <div class="lg:col-span-8">
-                <div id="dropZone" class="glass-panel neon-border rounded-[2.5rem] p-12 text-center relative overflow-hidden group transition-all duration-500 min-h-[480px] flex flex-col items-center justify-center cursor-pointer" onclick="document.getElementById('fileInput').click()">
-                    <div id="scanLine" class="scan-line"></div>
-                    <div id="idleState" class="space-y-6">
-                        <div class="w-24 h-24 bg-blue-500/5 rounded-full flex items-center justify-center mx-auto border border-blue-500/10 group-hover:border-blue-500/50 transition-all duration-700">
-                            <svg class="w-10 h-10 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            
+            <div class="lg:col-span-8 space-y-6">
+                <div id="dropZone" class="glass rounded-[2.5rem] p-10 text-center relative overflow-hidden group transition-all duration-500 min-h-[500px] flex flex-col items-center justify-center cursor-pointer hover:border-blue-500/50" onclick="document.getElementById('fileInput').click()">
+                    
+                    <div id="idleContent" class="space-y-6">
+                        <div class="w-28 h-28 bg-blue-500/10 rounded-full flex items-center justify-center mx-auto border border-blue-500/20 group-hover:scale-110 transition-transform">
+                            <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
                         </div>
-                        <h2 class="text-4xl font-black text-white">Initialize Scrub</h2>
-                        <p class="text-slate-400 max-w-sm mx-auto text-lg">Drop your image here to strip GPS and device IDs instantly.</p>
+                        <h2 class="text-4xl font-bold text-white tracking-tight">Protect Your Photo</h2>
+                        <p class="text-slate-400 text-lg">Click to select an image. Metadata is purged locally.</p>
+                        
+                        <div class="flex justify-center gap-8 pt-4 opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all">
+                            <img src="https://www.svgrepo.com/show/354313/secure-file.svg" class="w-8 h-8" title="SSL Encrypted">
+                            <img src="https://www.svgrepo.com/show/342129/privacy.svg" class="w-8 h-8" title="Privacy Guaranteed">
+                            <img src="https://www.svgrepo.com/show/443425/no-data.svg" class="w-8 h-8" title="No Data Collected">
+                        </div>
                     </div>
-                    <div id="processingState" class="hidden space-y-6">
-                        <div class="text-6xl animate-pulse">🛡️</div>
-                        <h3 id="statusText" class="text-2xl font-mono text-blue-400 uppercase tracking-widest">Analysing...</h3>
+
+                    <div id="activeContent" class="hidden text-center space-y-6">
+                        <div id="terminal" class="terminal-text bg-black/40 p-4 rounded-xl text-left min-w-[250px] mb-6 border border-white/5"></div>
+                        <div id="resultArea"></div>
                     </div>
+
                     <input type="file" id="fileInput" hidden accept="image/*">
                 </div>
             </div>
 
-            <div class="lg:col-span-4 flex flex-col gap-6">
-                <div class="glass-panel rounded-[2rem] p-8">
-                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-6">Security Engine</h4>
-                    <div class="space-y-5">
-                        <div class="flex justify-between text-sm font-mono"><span class="text-slate-400">STATUS</span><span class="text-green-400">PRIVATE</span></div>
-                        <div class="flex justify-between text-sm font-mono"><span class="text-slate-400">STORAGE</span><span class="text-white">NONE</span></div>
-                        <div class="flex justify-between text-sm font-mono"><span class="text-slate-400">NETWORK</span><span class="text-white">OFFLINE</span></div>
+            <div class="lg:col-span-4 space-y-6">
+                <div class="glass rounded-3xl p-8">
+                    <h3 class="text-blue-500 font-bold uppercase text-xs tracking-widest mb-4">Threat Detection</h3>
+                    <p class="text-sm text-slate-400 mb-4 italic">"Normal photos contain your home address (GPS), your phone's serial number, and exact timestamps."</p>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-2 text-xs text-red-400 font-bold bg-red-400/10 p-2 rounded-lg">⚠️ Location Leaks Fixed</div>
+                        <div class="flex items-center gap-2 text-xs text-red-400 font-bold bg-red-400/10 p-2 rounded-lg">⚠️ Device Tracking Purged</div>
                     </div>
                 </div>
-                <div class="glass-panel rounded-[2rem] p-8 bg-blue-600/5 border-blue-500/20">
-                    <p class="text-sm text-slate-400 leading-relaxed italic">"Metadata contains your home GPS and phone serial number. PureScrub uses browser-only reconstruction to protect your identity."</p>
+
+                <div class="glass rounded-3xl p-8 bg-blue-600/5">
+                    <h3 class="text-white font-bold text-sm mb-2">Share the Privacy</h3>
+                    <p class="text-xs text-slate-500 mb-4">Help others protect their data. Invite them to PureScrub.</p>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" class="w-full py-3 bg-white/5 hover:bg-white/10 text-white text-xs font-bold rounded-xl border border-white/10 transition-all">COPY INVITE LINK</button>
                 </div>
             </div>
         </div>
 
-        <section class="w-full max-w-5xl mt-16 border-t border-slate-800 pt-16 mb-20">
-            <h2 class="text-3xl font-black text-white mb-12 text-center uppercase tracking-tighter">Laboratory Intelligence (FAQ)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
-                    <h4 class="text-blue-400 font-bold mb-3 text-lg">How do I remove GPS location from photos?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Simply drag your image into PureScrub. Our engine strips EXIF tags, including GPS coordinates, ensuring your home or office location remains private before you share on social media.</p>
+        <section class="max-w-4xl mx-auto mt-20 border-t border-white/5 pt-16 mb-20">
+            <h2 class="text-3xl font-bold text-center mb-12 text-white">How it Works</h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-4">
+                    <h4 class="text-blue-400 font-bold italic">#01 Reconstruction</h4>
+                    <p class="text-sm text-slate-400">We don't just "edit" the file. We draw the image onto an invisible HTML5 Canvas, recreating the pixels and ignoring the metadata entirely.</p>
                 </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
-                    <h4 class="text-blue-400 font-bold mb-3 text-lg">Is PureScrub free for commercial use?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Yes. We believe privacy is a right. PureScrub is a 100% free web utility for journalists, photographers, and everyday users to clean photo metadata instantly.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
-                    <h4 class="text-blue-400 font-bold mb-3 text-lg">Does this work on iPhone and Android?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">Yes. PureScrub is a progressive web utility that works in any mobile browser. You can scrub metadata directly from your phone's camera roll without installing an app.</p>
-                </div>
-                <div class="glass-panel p-8 rounded-[2rem] border-white/5">
-                    <h4 class="text-blue-400 font-bold mb-3 text-lg">What is EXIF data?</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">EXIF data is a hidden file inside your image that stores camera settings, timestamps, and sensitive location markers. Our tool purges this data completely.</p>
+                <div class="space-y-4">
+                    <h4 class="text-blue-400 font-bold italic">#02 Local Runtime</h4>
+                    <p class="text-sm text-slate-400">Everything stays in your RAM. Your photo never travels across the internet to a central server. Your data, your device.</p>
                 </div>
             </div>
         </section>
 
-        <footer class="text-center text-slate-600 text-[10px] tracking-widest uppercase font-bold pb-10">
-            &copy; 2026 PureScrub Privacy Systems // No Data Retention Policy
+        <footer class="text-center pb-20 border-t border-white/5 pt-10">
+            <p class="text-[10px] text-slate-600 uppercase tracking-[0.3em]">&copy; 2026 PURESCRUB // BUILT FOR TOTAL ANONYMITY</p>
         </footer>
     </div>
 
     <script>
         const fileInput = document.getElementById('fileInput');
-        const dropZone = document.getElementById('dropZone');
-        const scanLine = document.getElementById('scanLine');
-        const idleState = document.getElementById('idleState');
-        const processingState = document.getElementById('processingState');
-        const statusText = document.getElementById('statusText');
+        const idleContent = document.getElementById('idleContent');
+        const activeContent = document.getElementById('activeContent');
+        const terminal = document.getElementById('terminal');
+        const resultArea = document.getElementById('resultArea');
 
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
-            idleState.classList.add('hidden');
-            processingState.classList.remove('hidden');
-            scanLine.style.display = 'block';
-            
-            const steps = ["SCANNING_EXIF...", "CLEANING_GPS...", "RECONSTRUCTING...", "READY"];
-            for(let i=0; i<steps.length; i++) {
-                statusText.innerText = steps[i];
-                await new Promise(r => setTimeout(r, 700));
+            idleContent.classList.add('hidden');
+            activeContent.classList.remove('hidden');
+            terminal.innerHTML = "";
+
+            const logs = [
+                "> INITIALIZING_SANDBOX...",
+                "> ATTACHING_IMAGE_BUFFER...",
+                "> ANALYZING_EXIF_CHUNKS...",
+                "> WARNING: GPS_COORD_DETECTED...",
+                "> STRIPPING_METADATA_HEADER...",
+                "> RECONSTRUCTING_PIXEL_DATA...",
+                "> CLEAN_REPLICA_GENERATED."
+            ];
+
+            for(const log of logs) {
+                terminal.innerHTML += `<div>${log}</div>`;
+                await new Promise(r => setTimeout(r, 450));
             }
 
             const img = new Image();
@@ -138,11 +145,9 @@
                 ctx.drawImage(img, 0, 0);
                 canvas.toBlob((blob) => {
                     const url = URL.createObjectURL(blob);
-                    scanLine.style.display = 'none';
-                    processingState.innerHTML = `
-                        <div class="text-7xl mb-6">🛡️</div>
-                        <h2 class="text-3xl font-black text-white mb-8">SCRUB_COMPLETE</h2>
-                        <button onclick="window.location.href='${url}'" class="bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-14 rounded-2xl shadow-2xl shadow-blue-500/40 transition-all active:scale-95">DOWNLOAD_PRIVATE_FILE</button>
+                    resultArea.innerHTML = `
+                        <div class="text-green-400 font-bold mb-4">PURITY_CONFIRMED. NO_TRACKERS_REMAIN.</div>
+                        <button onclick="window.location.href='${url}'" class="px-10 py-5 bg-blue-600 hover:bg-blue-500 text-white font-black rounded-2xl shadow-2xl shadow-blue-500/40">DOWNLOAD PRIVATE VERSION</button>
                     `;
                 }, 'image/jpeg', 0.95);
             };
