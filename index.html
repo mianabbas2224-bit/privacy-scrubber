@@ -145,95 +145,6 @@
                 <p class="text-slate-500 text-sm">Download a sanitized copy of your media, perfectly safe for zero-trace sharing.</p>
             </div>
        <script>
-    const fileInput = document.getElementById('fileInput');
-    const idleState = document.getElementById('idleState');
-    const processingState = document.getElementById('processingState');
-    const statusText = document.getElementById('statusText');
-    const safetyGauge = document.getElementById('safetyGauge');
-    const gaugeText = document.getElementById('gaugeText');
-    const terminal = document.getElementById('dataTerminal');
-
-    fileInput.addEventListener('change', async (e) => {
-        const file = e.target.files[0];
-        if (!file) return;
-
-        // UI Reset & Start Animation
-        idleState.classList.add('hidden');
-        processingState.classList.remove('hidden');
-        document.getElementById('scanLine').style.display = 'block';
-
-        // Terminal animation
-        terminal.innerHTML = `
-            <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>GPS_Coords</span><span>DETECTED</span></div>
-            <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Device_ID</span><span>DETECTED</span></div>
-            <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Serial_Mask</span><span>DETECTED</span></div>
-        `;
-        
-        await new Promise(r => setTimeout(r, 1200));
-
-        statusText.innerText = "WIPING_HEADERS...";
-        safetyGauge.style.width = "75%";
-        gaugeText.innerText = "Processing...";
-        gaugeText.className = "text-blue-400 font-bold uppercase";
-        
-        await new Promise(r => setTimeout(r, 1000));
-
-        // Core Image Processing
-        const img = new Image();
-        img.src = URL.createObjectURL(file);
-        
-        img.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = img.width; 
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            
-            // This drawing action effectively strips all metadata
-            ctx.drawImage(img, 0, 0);
-            
-            canvas.toBlob((blob) => {
-                const url = URL.createObjectURL(blob);
-                
-                // Update terminal to success
-                terminal.innerHTML = `
-                    <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>GPS_Coords</span><span>REMOVED</span></div>
-                    <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Device_ID</span><span>REMOVED</span></div>
-                    <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Serial_Mask</span><span>REMOVED</span></div>
-                `;
-                
-                document.getElementById('scanLine').style.display = 'none';
-                statusText.innerText = "PURIFICATION_SUCCESS";
-                safetyGauge.style.width = "100%";
-                gaugeText.innerText = "SHIELDED";
-                gaugeText.className = "text-green-400 font-bold uppercase";
-
-                // Update the UI with a REAL download link
-                processingState.innerHTML = `
-                    <div class="text-6xl mb-6">🛡️</div>
-                    <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-tighter italic">Purified</h2>
-                    <a href="${url}" 
-                       download="PrivacyScrubber_Clean.jpg" 
-                       class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-black py-6 px-16 rounded-2xl shadow-xl transition-all active:scale-95 text-xs tracking-widest uppercase">
-                       Download Safe File
-                    </a>
-                    <p class="mt-4 text-[10px] text-slate-500 uppercase tracking-widest font-bold">Local purification complete. No data was uploaded.</p>
-                `;
-            }, 'image/jpeg', 0.95);
-        };
-    });
-</script>
-            </div>
-            <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
-                <p class="text-[9px] font-mono text-slate-600 tracking-[0.4em] uppercase">© 2026 PrivacyScrubber.com // Pure Privacy Engineering</p>
-                <div class="flex gap-8 text-[9px] font-bold text-slate-700 uppercase tracking-widest">
-                    <span>v2.8.0-STABLE</span>
-                    <span>No_Cookies</span>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script>
         const fileInput = document.getElementById('fileInput');
         const idleState = document.getElementById('idleState');
         const processingState = document.getElementById('processingState');
@@ -242,10 +153,23 @@
         const gaugeText = document.getElementById('gaugeText');
         const terminal = document.getElementById('dataTerminal');
 
+        // Reset Functionality
+        function resetTool() {
+            idleState.classList.remove('hidden');
+            processingState.classList.add('hidden');
+            fileInput.value = ''; // Clear the file input
+            terminal.innerHTML = `
+                <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">GPS_Coords</span><span class="text-slate-400">—</span></div>
+                <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">Device_ID</span><span class="text-slate-400">—</span></div>
+                <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">Serial_Mask</span><span class="text-slate-400">—</span></div>
+            `;
+        }
+
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
+            // Start UI
             idleState.classList.add('hidden');
             processingState.classList.remove('hidden');
             document.getElementById('scanLine').style.display = 'block';
@@ -256,40 +180,51 @@
                 <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Device_ID</span><span>DETECTED</span></div>
                 <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Serial_Mask</span><span>DETECTED</span></div>
             `;
+            
             await new Promise(r => setTimeout(r, 1200));
 
-            // Purging logic
             statusText.innerText = "WIPING_HEADERS...";
             safetyGauge.style.width = "75%";
             gaugeText.innerText = "Processing...";
-            gaugeText.className = "text-blue-400 font-bold uppercase";
-            await new Promise(r => setTimeout(r, 1000));
-
-            // Final Shielded state
-            statusText.innerText = "PURIFICATION_SUCCESS";
-            safetyGauge.style.width = "100%";
-            gaugeText.innerText = "SHIELDED";
-            gaugeText.className = "text-green-400 font-bold uppercase";
             
             const img = new Image();
             img.src = URL.createObjectURL(file);
+            
             img.onload = () => {
                 const canvas = document.createElement('canvas');
-                canvas.width = img.width; canvas.height = img.height;
+                canvas.width = img.width; 
+                canvas.height = img.height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
+                
                 canvas.toBlob((blob) => {
                     const url = URL.createObjectURL(blob);
+                    
+                    // Success UI
                     terminal.innerHTML = `
                         <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>GPS_Coords</span><span>REMOVED</span></div>
                         <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Device_ID</span><span>REMOVED</span></div>
                         <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Serial_Mask</span><span>REMOVED</span></div>
                     `;
+                    
                     document.getElementById('scanLine').style.display = 'none';
+                    statusText.innerText = "PURIFICATION_SUCCESS";
+                    safetyGauge.style.width = "100%";
+                    gaugeText.innerText = "SHIELDED";
+                    gaugeText.className = "text-green-400 font-bold uppercase";
+
+                    // The Fixed Download & Restart Button
                     processingState.innerHTML = `
-                        <div class="text-6xl mb-6">🛡️</div>
-                        <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-tighter italic">Purified</h2>
-                        <button onclick="window.location.href='${url}'" class="bg-blue-600 hover:bg-blue-500 text-white font-black py-6 px-16 rounded-2xl shadow-xl transition-all active:scale-95 text-xs tracking-widest uppercase">Download Safe File</button>
+                        <div class="text-6xl mb-4">🛡️</div>
+                        <h2 class="text-3xl font-black text-white mb-6 uppercase tracking-tighter italic">Purified</h2>
+                        <div class="flex flex-col gap-4 items-center">
+                            <a href="${url}" download="PrivacyScrubber_Clean.jpg" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-2xl shadow-xl transition-all active:scale-95 text-xs tracking-widest uppercase text-center">
+                               Download Safe File
+                            </a>
+                            <button onclick="resetTool()" class="text-slate-500 hover:text-white text-[10px] uppercase font-black tracking-widest border-b border-slate-800 pb-1">
+                               Purge Another File
+                            </button>
+                        </div>
                     `;
                 }, 'image/jpeg', 0.95);
             };
