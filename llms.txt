@@ -1,0 +1,13 @@
+# PrivacyScrubber
+> A professional, browser-side metadata and EXIF purification tool.
+
+## Purpose
+Wipes hidden digital DNA (GPS, Device IDs, Timestamps) from photos before sharing.
+
+## Key Features
+- Zero-Server Processing: All scrubbing happens in the user's browser RAM.
+- No-Logs Policy: No data is ever uploaded or stored.
+- EXIF & XMP Purge: Removes over 140 types of metadata.
+
+## Links
+- App: https://privacyscrubber.vercel.app/
