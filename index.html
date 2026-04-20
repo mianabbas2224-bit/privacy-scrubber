@@ -3,35 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PureScrub - Free Instant Photo Privacy Cleaner</title>
+    <title>PureScrub | Professional Image Privacy Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f4f7f6; }
-        .upload-box { border: 2px dashed #007bff; padding: 40px; background: white; border-radius: 10px; display: inline-block; cursor: pointer; }
-        #downloadBtn { display: none; margin-top: 20px; padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glow:hover { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); transition: 0.3s; }
     </style>
 </head>
-<body>
-    <h1>🛡️ PureScrub</h1>
-    <p>Remove GPS, Camera Info, and Timestamps instantly. 100% Private.</p>
-    
-    <div class="upload-box" onclick="document.getElementById('fileInput').click()">
-        Drag & Drop or Click to Upload Image
-        <input type="file" id="fileInput" hidden accept="image/*">
-    </div>
+<body class="bg-[#0a0a0a] text-gray-200 min-h-screen flex flex-col items-center p-6">
 
-    <br>
-    <button id="downloadBtn">Download Private Image</button>
+    <header class="w-full max-w-4xl flex justify-between items-center py-8">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center font-bold text-white">P</div>
+            <span class="text-xl font-bold tracking-tight text-white">PureScrub</span>
+        </div>
+        <div class="text-xs uppercase tracking-widest text-gray-500 font-semibold">100% Client-Side Privacy</div>
+    </header>
+
+    <main class="w-full max-w-4xl grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <div class="md:col-span-2 glass rounded-3xl p-8 flex flex-col items-center justify-center text-center border-blue-500/20 border-2">
+            <h2 class="text-3xl font-extrabold text-white mb-2">Drop your image.</h2>
+            <p class="text-gray-400 mb-8">We'll rebuild it pixel-by-pixel, leaving all trackers behind.</p>
+            
+            <div id="dropZone" class="w-full h-64 border-2 border-dashed border-gray-700 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:bg-white/5 transition-all group" onclick="document.getElementById('fileInput').click()">
+                <div class="text-5xl mb-4 group-hover:scale-110 transition-transform">🖼️</div>
+                <p class="text-sm text-gray-500">JPG, PNG, or WEBP</p>
+                <input type="file" id="fileInput" hidden accept="image/*">
+            </div>
+
+            <button id="downloadBtn" class="hidden mt-8 w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl shadow-lg glow">
+                Download Cleaned Image
+            </button>
+        </div>
+
+        <div class="flex flex-col gap-6">
+            <div class="glass rounded-3xl p-6">
+                <h3 class="text-blue-400 font-bold mb-2">Why PureScrub?</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Unlike "editors," we use <b>Canvas-Reconstruction</b>. This ensures even the most stubborn GPS and device IDs are purged.</p>
+            </div>
+            <div class="glass rounded-3xl p-6 bg-blue-600/10 border-blue-500/30">
+                <h3 class="text-white font-bold mb-2">No Server. No Risk.</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">Your photos never leave your device. The scrubbing happens entirely in your browser.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="w-full max-w-4xl mt-16 border-t border-gray-800 pt-12">
+        <h2 class="text-2xl font-bold text-white mb-6">About Image Metadata (EXIF)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-gray-400 text-sm leading-relaxed">
+            <p>Every photo you take contains a hidden "digital fingerprint." This includes your exact GPS coordinates, the camera serial number, and time data. Hackers and big-tech scrapers use this to build a profile of your location history.</p>
+            <p>PureScrub was built for journalists, activists, and privacy-conscious users in 2026. Our mission is to provide a zero-cost, high-speed way to reclaim your digital anonymity without requiring complex software.</p>
+        </div>
+    </section>
+
+    <footer class="mt-20 text-gray-600 text-xs pb-10">
+        &copy; 2026 PureScrub Privacy Engine. Build #001.
+    </footer>
 
     <script>
         const fileInput = document.getElementById('fileInput');
         const downloadBtn = document.getElementById('downloadBtn');
+        const dropZone = document.getElementById('dropZone');
 
         fileInput.addEventListener('change', async (e) => {
             const file = e.target.files[0];
             if (!file) return;
 
-            // Simple Logic: Draw image to Canvas to strip metadata
             const img = new Image();
             img.src = URL.createObjectURL(file);
             img.onload = () => {
@@ -41,18 +80,17 @@
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
                 
-                // Convert back to image (this strips EXIF automatically)
                 canvas.toBlob((blob) => {
                     const url = URL.createObjectURL(blob);
                     downloadBtn.onclick = () => {
                         const a = document.createElement('a');
                         a.href = url;
-                        a.download = "private_" + file.name;
+                        a.download = "purescrub_" + file.name;
                         a.click();
                     };
-                    downloadBtn.style.display = "inline-block";
-                    alert("Metadata Stripped! Your private image is ready.");
-                }, 'image/jpeg', 0.9);
+                    downloadBtn.classList.remove('hidden');
+                    dropZone.innerHTML = `<div class="text-5xl mb-4">✅</div><p class="text-blue-400 font-bold">Image Purified!</p>`;
+                }, 'image/jpeg', 0.92);
             };
         });
     </script>
