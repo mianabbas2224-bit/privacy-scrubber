@@ -144,7 +144,65 @@
                 <h4 class="text-white font-bold text-xl uppercase tracking-tighter">Safe Output</h4>
                 <p class="text-slate-500 text-sm">Download a sanitized copy of your media, perfectly safe for zero-trace sharing.</p>
             </div>
-       <script>
+        </div>
+
+        <section class="mb-32 text-left">
+            <h2 class="text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter italic">Security Intelligence</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass-panel p-10 rounded-[2.5rem] border-white/5">
+                    <h4 class="text-blue-400 font-bold mb-4 text-xl tracking-tighter uppercase">Why PrivacyScrubber?</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Most online tools upload your data to their servers to "clean" it. We don't. Everything happens on your machine. If you unplug your internet, PrivacyScrubber still works.</p>
+                </div>
+                <div class="glass-panel p-10 rounded-[2.5rem] border-white/5">
+                    <h4 class="text-blue-400 font-bold mb-4 text-xl tracking-tighter uppercase">No Quality Loss?</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Correct. We strip the hidden headers without re-compressing the image, ensuring you keep 100% of your visual quality.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-slate-800 pt-20 pb-10 text-left">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-xs font-bold text-white shadow-lg">PS</div>
+                        <span class="text-white font-black uppercase text-lg tracking-tighter">PrivacyScrubber</span>
+                    </div>
+                    <p class="text-slate-500 text-[10px] italic leading-relaxed">The global standard for browser-side metadata purification.</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Capabilities</h5>
+                    <ul class="space-y-4 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                        <li class="hover:text-blue-500 cursor-pointer transition">Exif_Strip</li>
+                        <li class="hover:text-blue-500 cursor-pointer transition">GPS_Purge</li>
+                        <li class="hover:text-blue-500 cursor-pointer transition">Software_Mask</li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Security</h5>
+                    <ul class="space-y-4 text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+                        <li class="hover:text-blue-500 cursor-pointer transition">Zero_Logs</li>
+                        <li class="hover:text-blue-500 cursor-pointer transition">RAM_Only</li>
+                        <li class="hover:text-blue-500 cursor-pointer transition">Serverless</li>
+                    </ul>
+                </div>
+                <div class="text-right">
+                    <div class="inline-flex items-center gap-2 bg-blue-500/5 border border-blue-500/20 px-4 py-2 rounded-full">
+                        <span class="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
+                        <span class="text-[9px] font-mono text-blue-400 font-bold uppercase">System_Secure</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-slate-900 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-[9px] font-mono text-slate-600 tracking-[0.4em] uppercase">© 2026 PrivacyScrubber.com // Pure Privacy Engineering</p>
+                <div class="flex gap-8 text-[9px] font-bold text-slate-700 uppercase tracking-widest">
+                    <span>v2.8.0-STABLE</span>
+                    <span>No_Cookies</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
         const fileInput = document.getElementById('fileInput');
         const idleState = document.getElementById('idleState');
         const processingState = document.getElementById('processingState');
@@ -153,15 +211,34 @@
         const gaugeText = document.getElementById('gaugeText');
         const terminal = document.getElementById('dataTerminal');
 
-        // Reset Functionality
-        function resetTool() {
+        // Logic to reset the tool for a new image (The Back Button Function)
+        function resetScrubber() {
             idleState.classList.remove('hidden');
             processingState.classList.add('hidden');
-            fileInput.value = ''; // Clear the file input
+            // Reset processing state HTML for next time
+            processingState.innerHTML = `
+                <div class="space-y-4 text-left">
+                    <div class="flex justify-between text-[10px] font-black uppercase tracking-[0.2em]">
+                        <span class="text-slate-500">Security Gauge</span>
+                        <span id="gaugeText" class="text-red-500 font-bold">Vulnerable</span>
+                    </div>
+                    <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden border border-white/5">
+                        <div id="safetyGauge" class="gauge-bar h-full w-[15%] bg-gradient-to-r from-red-500 to-blue-500"></div>
+                    </div>
+                </div>
+                <div id="statusText" class="text-xl font-mono text-blue-400 uppercase tracking-widest animate-pulse">Scanning Headers...</div>
+            `;
+            // Re-map the global variables to the new elements we just created
+            window.statusText = document.getElementById('statusText');
+            window.safetyGauge = document.getElementById('safetyGauge');
+            window.gaugeText = document.getElementById('gaugeText');
+            
+            fileInput.value = ''; 
             terminal.innerHTML = `
                 <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">GPS_Coords</span><span class="text-slate-400">—</span></div>
                 <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">Device_ID</span><span class="text-slate-400">—</span></div>
                 <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase tracking-widest">Serial_Mask</span><span class="text-slate-400">—</span></div>
+                <div class="flex justify-between items-center text-xs font-mono py-2"><span class="text-slate-500 uppercase tracking-widest">XMP_Data</span><span class="text-slate-400">—</span></div>
             `;
         }
 
@@ -169,67 +246,39 @@
             const file = e.target.files[0];
             if (!file) return;
 
-            // Start UI
             idleState.classList.add('hidden');
             processingState.classList.remove('hidden');
             document.getElementById('scanLine').style.display = 'block';
 
-            // Terminal detected animation
             terminal.innerHTML = `
                 <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>GPS_Coords</span><span>DETECTED</span></div>
                 <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Device_ID</span><span>DETECTED</span></div>
                 <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Serial_Mask</span><span>DETECTED</span></div>
             `;
-            
             await new Promise(r => setTimeout(r, 1200));
 
-            statusText.innerText = "WIPING_HEADERS...";
-            safetyGauge.style.width = "75%";
-            gaugeText.innerText = "Processing...";
-            
+            const currentStatus = document.getElementById('statusText');
+            const currentGauge = document.getElementById('safetyGauge');
+            const currentGaugeText = document.getElementById('gaugeText');
+
+            currentStatus.innerText = "WIPING_HEADERS...";
+            currentGauge.style.width = "75%";
+            currentGaugeText.innerText = "Processing...";
+            currentGaugeText.className = "text-blue-400 font-bold uppercase";
+            await new Promise(r => setTimeout(r, 1000));
+
             const img = new Image();
             img.src = URL.createObjectURL(file);
-            
             img.onload = () => {
                 const canvas = document.createElement('canvas');
-                canvas.width = img.width; 
-                canvas.height = img.height;
+                canvas.width = img.width; canvas.height = img.height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
                 
                 canvas.toBlob((blob) => {
                     const url = URL.createObjectURL(blob);
                     
-                    // Success UI
                     terminal.innerHTML = `
                         <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>GPS_Coords</span><span>REMOVED</span></div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Device_ID</span><span>REMOVED</span></div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Serial_Mask</span><span>REMOVED</span></div>
-                    `;
-                    
-                    document.getElementById('scanLine').style.display = 'none';
-                    statusText.innerText = "PURIFICATION_SUCCESS";
-                    safetyGauge.style.width = "100%";
-                    gaugeText.innerText = "SHIELDED";
-                    gaugeText.className = "text-green-400 font-bold uppercase";
-
-                    // The Fixed Download & Restart Button
-                    processingState.innerHTML = `
-                        <div class="text-6xl mb-4">🛡️</div>
-                        <h2 class="text-3xl font-black text-white mb-6 uppercase tracking-tighter italic">Purified</h2>
-                        <div class="flex flex-col gap-4 items-center">
-                            <a href="${url}" download="PrivacyScrubber_Clean.jpg" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-black py-5 px-12 rounded-2xl shadow-xl transition-all active:scale-95 text-xs tracking-widest uppercase text-center">
-                               Download Safe File
-                            </a>
-                            <button onclick="resetTool()" class="text-slate-500 hover:text-white text-[10px] uppercase font-black tracking-widest border-b border-slate-800 pb-1">
-                               Purge Another File
-                            </button>
-                        </div>
-                    `;
-                }, 'image/jpeg', 0.95);
-            };
-        });
-    </script>
-</body>
-</html>
-    
+                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Device_ID</span><span>
+     
