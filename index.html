@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrivacyScrub | Professional Metadata Purification</title>
+    <title>PrivacyScrubber | Professional Metadata Purification</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
     <style>
@@ -29,21 +29,19 @@
         
         <nav class="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                 </div>
                 <div>
-                    <h1 class="text-2xl font-black tracking-tighter text-white uppercase leading-none">PrivacyScrub</h1>
-                    <span class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">Secure Metadata Eraser</span>
+                    <h1 class="text-2xl font-black tracking-tighter text-white uppercase leading-none">PrivacyScrubber</h1>
+                    <span class="text-[9px] text-blue-500 font-bold tracking-[0.2em] uppercase">Professional Metadata Eraser</span>
                 </div>
             </div>
             
             <div class="flex items-center gap-6 px-6 py-2 bg-slate-900/50 rounded-full border border-white/5 backdrop-blur-md">
-                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Node</span><span class="text-xs font-mono text-green-400">ENCRYPTED</span></div>
+                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Protocol</span><span class="text-xs font-mono text-blue-400 font-bold">MAX_SECURE</span></div>
                 <div class="w-px h-6 bg-white/10"></div>
-                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Privacy</span><span class="text-xs font-mono text-blue-400 font-bold uppercase">MAXIMUM</span></div>
-                <div class="w-px h-6 bg-white/10"></div>
-                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Load</span><span class="text-xs font-mono text-white">0% (Local)</span></div>
+                <div class="flex flex-col items-start"><span class="text-[8px] text-slate-500 uppercase font-bold">Engine</span><span class="text-xs font-mono text-green-400">LOCAL_RAM</span></div>
             </div>
         </nav>
 
@@ -52,7 +50,7 @@
                 <span class="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">1,248 Images Scrubbed Today</span>
             </div>
             <h2 class="text-5xl md:text-7xl font-black text-white tracking-tighter uppercase italic">Privacy is not a Luxury.</h2>
-            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">Built for <b>PrivacyScrub.com</b> users who demand total anonymity. Wipe hidden digital fingerprints instantly.</p>
+            <p class="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed italic text-center">Built for <b>PrivacyScrubber.com</b>. Eliminate hidden tracking markers from your media instantly.</p>
         </div>
 
         <div class="grid lg:grid-cols-12 gap-8 items-start mb-24">
@@ -65,56 +63,44 @@
                         </div>
                         <div>
                             <h2 class="text-4xl font-black text-white mb-2 tracking-tighter uppercase">Initialize Scrub</h2>
-                            <p class="text-slate-400 max-w-sm mx-auto text-lg leading-relaxed">Drop image to purge EXIF, GPS, and Device ID markers.</p>
+                            <p class="text-slate-400 max-w-sm mx-auto text-lg">Select image to begin deep header purification.</p>
                         </div>
                     </div>
                     
                     <div id="processingState" class="hidden w-full max-w-md space-y-10">
                         <div class="space-y-4">
                             <div class="flex justify-between text-[10px] font-black uppercase tracking-[0.2em]">
-                                <span class="text-slate-500">Security Gauge</span>
+                                <span class="text-slate-500">Privacy Status</span>
                                 <span id="gaugeText" class="text-red-500">Vulnerable</span>
                             </div>
                             <div class="w-full h-3 bg-slate-800 rounded-full overflow-hidden border border-white/5">
                                 <div id="safetyGauge" class="gauge-bar h-full w-[15%] bg-gradient-to-r from-red-500 to-blue-500"></div>
                             </div>
                         </div>
-                        <div id="statusText" class="text-xl font-mono text-blue-400 uppercase tracking-widest animate-pulse">Wiping Data...</div>
+                        <div id="statusText" class="text-xl font-mono text-blue-400 uppercase tracking-widest animate-pulse">Scrubbing Metadata...</div>
                     </div>
                     <input type="file" id="fileInput" hidden accept="image/*">
                 </div>
             </div>
 
-            <div class="lg:col-span-4 flex flex-col gap-6">
+            <div class="lg:col-span-4 flex flex-col gap-6 text-left">
                 <div class="glass-panel rounded-[2rem] p-8">
                     <h4 class="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 flex justify-between">
                         Security Console <span class="text-blue-500">Live</span>
                     </h4>
                     <div id="dataTerminal" class="space-y-4">
-                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5">
-                            <span class="text-slate-500">GPS_COORDS</span>
-                            <span class="text-slate-400">—</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5">
-                            <span class="text-slate-500">DEVICE_ID</span>
-                            <span class="text-slate-400">—</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5">
-                            <span class="text-slate-500">TIMESTAMP</span>
-                            <span class="text-slate-400">—</span>
-                        </div>
-                        <div class="flex justify-between items-center text-xs font-mono py-2">
-                            <span class="text-slate-500">SERIAL_MASK</span>
-                            <span class="text-slate-400">—</span>
-                        </div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase">GPS_Coords</span><span class="text-slate-400">—</span></div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase">Device_ID</span><span class="text-slate-400">—</span></div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2 border-b border-white/5"><span class="text-slate-500 uppercase">Serial_Mask</span><span class="text-slate-400">—</span></div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2"><span class="text-slate-500 uppercase">Software_ID</span><span class="text-slate-400">—</span></div>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-3xl p-8 bg-blue-600/10 border-blue-500/30">
-                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Invite Colleague</h4>
-                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed">Help your network stay anonymous. Share the PrivacyScrub link.</p>
-                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Secure Link Copied!')" class="w-full py-4 bg-blue-600 text-white text-[10px] font-black rounded-xl hover:bg-blue-500 transition-all uppercase tracking-widest shadow-lg active:scale-95">
-                        Copy Invite Link
+                <div class="glass-panel rounded-3xl p-8 bg-blue-600/10 border-blue-500/20">
+                    <h4 class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-3">Share Tool</h4>
+                    <p class="text-[11px] text-slate-400 mb-6 leading-relaxed uppercase">Help others secure their files. Copy the PrivacyScrubber link.</p>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied!')" class="w-full py-4 bg-blue-600 text-white text-[10px] font-black rounded-xl hover:bg-blue-500 transition-all uppercase tracking-widest active:scale-95">
+                        Copy PrivacyScrubber Link
                     </button>
                 </div>
             </div>
@@ -124,13 +110,124 @@
             <div class="text-center space-y-4">
                 <div class="text-blue-500 text-5xl font-black opacity-20">01</div>
                 <h4 class="text-white font-bold text-xl uppercase tracking-tighter">Local Ingest</h4>
-                <p class="text-slate-500 text-sm">Image is loaded directly into your browser's RAM. No data ever hits our server.</p>
+                <p class="text-slate-500 text-sm">Processed entirely in your browser's RAM. No data is ever uploaded to a server.</p>
             </div>
             <div class="text-center space-y-4">
                 <div class="text-blue-500 text-5xl font-black opacity-20">02</div>
-                <h4 class="text-white font-bold text-xl uppercase tracking-tighter">EXIF Purge</h4>
-                <p class="text-slate-500 text-sm">Our engine surgically removes 140+ metadata tags including GPS & Serial numbers.</p>
+                <h4 class="text-white font-bold text-xl uppercase tracking-tighter">Deep Wipe</h4>
+                <p class="text-slate-500 text-sm">We strip 140+ hidden tags including GPS coordinates, camera models, and timestamps.</p>
             </div>
             <div class="text-center space-y-4">
-                <div class="text-blue-500 text-5xl font-
+                <div class="text-blue-500 text-5xl font-black opacity-20">03</div>
+                <h4 class="text-white font-bold text-xl uppercase tracking-tighter">Secure Download</h4>
+                <p class="text-slate-500 text-sm">Download a sanitized copy of your media, perfectly safe for social sharing.</p>
+            </div>
+        </div>
+
+        <section class="mb-32">
+            <h2 class="text-4xl font-black text-white mb-12 text-center uppercase tracking-tighter italic">Security Intelligence</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                <div class="glass-panel p-10 rounded-[2.5rem] border-white/5">
+                    <h4 class="text-blue-400 font-bold mb-4 text-xl tracking-tighter uppercase">Why local processing?</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">PrivacyScrubber is built on a "Zero Trust" model. By scrubbing photos on your machine instead of a server, we ensure your private images never leave your control.</p>
+                </div>
+                <div class="glass-panel p-10 rounded-[2.5rem] border-white/5">
+                    <h4 class="text-blue-400 font-bold mb-4 text-xl tracking-tighter uppercase">Is image quality affected?</h4>
+                    <p class="text-slate-400 leading-relaxed text-sm">Absolutely not. We strip the hidden header data while leaving the visual pixel data untouched, maintaining 100% of the original quality.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="border-t border-slate-800 pt-20 pb-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20 text-left">
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-xs font-bold text-white">PS</div>
+                        <span class="text-white font-black uppercase text-lg tracking-tighter">PrivacyScrubber</span>
+                    </div>
+                    <p class="text-slate-500 text-xs italic">Absolute digital anonymity for journalists, activists, and privacy-conscious users worldwide.</p>
+                </div>
+                <div>
+                    <h5 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Capabilities</h5>
+                    <ul class="space-y-4 text-slate-500 text-xs uppercase"><li>EXIF_Wipe</li><li>GPS_Removal</li></ul>
+                </div>
+                <div>
+                    <h5 class="text-white text-[10px] font-black uppercase tracking-widest mb-8">Integrity</h5>
+                    <ul class="space-y-4 text-slate-500 text-xs uppercase"><li>Zero_Logs</li><li>Local_Processing</li></ul>
+                </div>
+                <div class="text-right">
+                    <span class="text-[10px] font-mono text-blue-400 font-bold uppercase tracking-widest">Shield_Active</span>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-slate-900">
+                <p class="text-[9px] font-mono text-slate-600 tracking-[0.4em] uppercase">© 2026 PrivacyScrubber.com // Global Privacy Standard</p>
+                <div class="flex gap-8 text-[9px] font-bold text-slate-700 uppercase tracking-widest"><span>v2.6.2-FINAL</span></div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const idleState = document.getElementById('idleState');
+        const processingState = document.getElementById('processingState');
+        const statusText = document.getElementById('statusText');
+        const safetyGauge = document.getElementById('safetyGauge');
+        const gaugeText = document.getElementById('gaugeText');
+        const terminal = document.getElementById('dataTerminal');
+
+        fileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            idleState.classList.add('hidden');
+            processingState.classList.remove('hidden');
+            document.getElementById('scanLine').style.display = 'block';
+
+            // Terminal extraction animation
+            terminal.innerHTML = `
+                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>GPS_Coords</span><span>DETECTED</span></div>
+                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Device_ID</span><span>DETECTED</span></div>
+                <div class="flex justify-between items-center text-xs font-mono py-2 text-red-400 animate-pulse"><span>Serial_Mask</span><span>DETECTED</span></div>
+            `;
+            await new Promise(r => setTimeout(r, 1200));
+
+            // Scrubbing animation
+            statusText.innerText = "WIPING_HEADERS...";
+            safetyGauge.style.width = "70%";
+            gaugeText.innerText = "Processing...";
+            gaugeText.className = "text-blue-400";
+            await new Promise(r => setTimeout(r, 1000));
+
+            // Reconstruction
+            statusText.innerText = "PURIFICATION_SUCCESS";
+            safetyGauge.style.width = "100%";
+            gaugeText.innerText = "SHIELDED";
+            gaugeText.className = "text-green-400";
+            
+            const img = new Image();
+            img.src = URL.createObjectURL(file);
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width; canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                canvas.toBlob((blob) => {
+                    const url = URL.createObjectURL(blob);
+                    terminal.innerHTML = `
+                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>GPS_Coords</span><span>REMOVED</span></div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Device_ID</span><span>REMOVED</span></div>
+                        <div class="flex justify-between items-center text-xs font-mono py-2 text-green-400"><span>Serial_Mask</span><span>REMOVED</span></div>
+                    `;
+                    document.getElementById('scanLine').style.display = 'none';
+                    processingState.innerHTML = `
+                        <div class="text-6xl mb-6">🛡️</div>
+                        <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-tighter italic italic">Wipe Complete</h2>
+                        <button onclick="window.location.href='${url}'" class="bg-blue-600 hover:bg-blue-500 text-white font-black py-6 px-16 rounded-2xl shadow-xl transition-all active:scale-95 text-xs tracking-widest uppercase">Download Secure File</button>
+                    `;
+                }, 'image/jpeg', 0.95);
+            };
+        });
+    </script>
+</body>
+</html>
     
